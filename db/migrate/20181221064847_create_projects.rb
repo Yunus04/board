@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration[5.2]
     create_table :projects do |t|
       t.string :name
       t.text :description
-      t.date_time :created
+      t.datetime :created
       t.timestamps
     end
   end
