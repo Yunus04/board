@@ -1,26 +1,49 @@
-<h2>Log in</h2>
+
+<!DOCTYPE html>
+<html>
+ <%= stylesheet_link_tag "devise" %>
+ <%= stylesheet_link_tag "reset" %>
+<head>
+
+  <meta charset="UTF-8">
+
+
+
+
+
+</head>
+
+<body>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="wrap">
+    <div class="avatar">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= image_tag("no-avatar.png") %>
     </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+ 
+  
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Username' %>
+  
+
+    <div class="bar">
+      <i></i>
+    </div>
+
+    
+     
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password' %>
+  
+    <a><%= link_to "Forgot your password?", new_password_path(resource_name), class: 'forgot_link' %></a>
+    
+
+     <%= f.submit "Sign In", class: 'button' %>
+   
+</div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+</body>
+
+</html>
+

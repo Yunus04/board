@@ -6,10 +6,24 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%#= javascript_include_tag 'npm.js' %>
+
+  </head>
+   
   <body>
+
     <%= yield %>
+     <%= javascript_include_tag 'bootstrap.min.js' %>
+    <%= javascript_include_tag 'bootstrap.js' %>
+    <%= javascript_include_tag 'bootstrap-datepicker.js' %>
+    <%= javascript_include_tag 'devise.js' %>
+    <%= javascript_include_tag 'html5shiv.min.js' %>
+    <%= javascript_include_tag 'lumino.glyphs.js' %>
+    <%= javascript_include_tag 'respond.min.js' %>
+    <%= javascript_include_tag 'custom.js' %>
   </body>
+
 </html>
