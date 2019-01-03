@@ -1,7 +1,12 @@
 class ProjectController < ApplicationController
 
- def index
+ 	def index
+ 		@project = Project.all
  	
- end
+ 	end
+
+ 	def new
+ 		
+ 	end
 
 end

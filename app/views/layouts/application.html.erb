@@ -12,11 +12,12 @@
     <%#= javascript_include_tag 'npm.js' %>
 
   </head>
-   
+  <%= stylesheet_link_tag "datepicker3" %>
+  <%= stylesheet_link_tag "dashboard" %>
   <body>
 
     <%= yield %>
-     <%= javascript_include_tag 'bootstrap.min.js' %>
+    <%= javascript_include_tag 'bootstrap.min.js' %>
     <%= javascript_include_tag 'bootstrap.js' %>
     <%= javascript_include_tag 'bootstrap-datepicker.js' %>
     <%= javascript_include_tag 'devise.js' %>
@@ -24,6 +25,12 @@
     <%= javascript_include_tag 'lumino.glyphs.js' %>
     <%= javascript_include_tag 'respond.min.js' %>
     <%= javascript_include_tag 'custom.js' %>
+
+    <%= javascript_include_tag 'jquery-1.11.1.min.js' %>
+    <%= javascript_include_tag 'chart.min.js' %>
+    <%= javascript_include_tag 'chart-data.js' %>
+    <%= javascript_include_tag 'easypiechart.js' %>
+    <%= javascript_include_tag 'easypiechart-data.js' %>
   </body>
 
 </html>

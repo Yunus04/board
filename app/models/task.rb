@@ -6,5 +6,5 @@ class Task < ApplicationRecord
 	belongs_to :project
 
 
-	enum priority: { none:0, low:1, medium:2, high:3}
+
 end

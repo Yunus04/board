@@ -10,7 +10,25 @@ User.create!(email: 'anugrah@gmail.com', name: 'Anugrah Wardhani', password: 'an
 User.create!(email: 'alan@gmail.com', name: 'Muhamad Alan', password: 'alan123')
 User.create!(email: 'iman@gmail.com', name: 'Iman Ismayana', password: 'iman123')
 User.create!(email: 'heru@gmail.com', name: 'Heru Julyanto', password: 'iman123')
-Team.create!(name: 'nineod', create_at: 'datetime.now' )
+
+Project.create!(name: 'For example the first project', created: Time.now ,  description: '
+this is an example of the first project created by the application, please see the flow of the example of this project so that you understand how to use our application' )
+
+Team.create!(name: 'nineod', created: Time.now )
+
+#MemberEmployment.create!(employment_id: 1, user_id: 1, team_id: 1)
+
+#Employment.create!(project_id: 1, employable_type: 'Team', employable_id: 1, status: 2)
+
+Milestone.create!(name: 'For example the first milestones', description: 'This is an exmaple of the first milestones on your project', start_date: Time.now , project_id: 1, team_id: 1)
+
+Task.create!(code: 'T-1', name: 'For example teh first your task', start_date: Time.now, project_id: 1 )
+
+Item.create!(milestone_id: 1, task_id: 1 )
+
+Issue.create!(code: 'I-1', title: 'Issue for the project ' , description: 'This is example issue for the project',created: Time.now )
+
+
 Position.create!(user_id: 1, team_id: 1, position: 3)
 Position.create!(user_id: 2, team_id: 1, position: 0)
 Position.create!(user_id: 3, team_id: 1, position: 0)

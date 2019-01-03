@@ -4,6 +4,7 @@ class CreateProjects < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :description
       t.datetime :created
+      t.integer :status, default: 0
       t.timestamps
     end
   end

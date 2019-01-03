@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(version: 2018_12_21_090452) do
   end
 
   create_table "issues", force: :cascade do |t|
+    t.string "code"
     t.string "title"
     t.text "description"
     t.datetime "created"
     t.integer "status", default: 0
+    t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,7 +66,7 @@ ActiveRecord::Schema.define(version: 2018_12_21_090452) do
   end
 
   create_table "member_employments", force: :cascade do |t|
-    t.integer "employ_id"
+    t.integer "employment_id"
     t.integer "user_id"
     t.integer "team_id"
     t.datetime "created_at", null: false
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 2018_12_21_090452) do
     t.string "name"
     t.text "description"
     t.datetime "created"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,10 +109,10 @@ ActiveRecord::Schema.define(version: 2018_12_21_090452) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "priority", default: 0
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -117,7 +120,7 @@ ActiveRecord::Schema.define(version: 2018_12_21_090452) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.datetime "create_at"
+    t.datetime "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

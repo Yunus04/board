@@ -4,7 +4,7 @@
 				 <%= image_tag "user", :class => "img-circle", alt: "" %>
 			</div>
 			<div class="profile-usertitle">
-				<div class="profile-usertitle-name">Username</div>
+				<div class="profile-usertitle-name"><h6><%= user_signed_in? ? current_user.name : 'Hello Guest' %></h6></div>
 				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 			</div>
 			<div class="clear"></div>
@@ -18,11 +18,13 @@
 		<ul class="nav menu">
 
 			<li><%= link_to ' Dashboard', dashboard_index_path, class: "fa fa-home" %></li>
-			<li><%= link_to ' Project', project_index_path, class: "fa fa-briefcase" %></li>
-			<li><a href="charts.html"><em class="fa fa-bar-chart">&nbsp;</em> Tasks</a></li>
-			<li><a href="elements.html"><em class="fa fa-toggle-off">&nbsp;</em> Issue</a></li>
-			<li><a href="panels.html"><em class="fa fa-text-width">&nbsp;</em> Milestones</a></li>
-			<li><a href="panels.html"><em class="fa fa-users">&nbsp;</em> My Teams</a></li>
+			<li><%= link_to ' Projects', project_index_path, class: "fa fa-briefcase" %></li>
+			<li><%= link_to ' Milestones', milestone_index_path, class: "fa fa-text-width" %></li>
+			<li><%= link_to ' Tasks', task_index_path, class: "fa fa-bar-chart" %></li>
+			<li><%= link_to ' Item-Lists', item_index_path ,  class: "fa fa-list-alt" %></li>
+			<li><%= link_to ' Issues', issue_index_path, class: "fa fa-toggle-off" %></li>
+			<li><%= link_to ' My Teams', team_index_path, class: "fa fa-users" %></li>
+
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-cogs">&nbsp;</em> Setup <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
@@ -38,7 +40,7 @@
 					</a></li>
 				</ul>
 			</li>
-			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+			<li><%= link_to ' Logout', destroy_user_session_path, class: "fa fa-power-off", method: :delete %></li>
 		</ul>
 	</div><!--/.sidebar-->
 	

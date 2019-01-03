@@ -4,8 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<%= stylesheet_link_tag "datepicker3" %>
-	<%= stylesheet_link_tag "dashboard" %>
+
 	<%= render 'layouts/navbar' %></br>
     <%= render 'layouts/sidebar' %></br>
     
@@ -380,20 +379,19 @@
 				<p class="back-link"><a href="https://www.medialoot.com"><em class="fa fa-copyright">&nbsp;</em>Nineod 2018</a></p>
 			</div>
 		</div><!--/.row-->
-	</div>	<!--/.main-->
-	
-	
-    <%= javascript_include_tag 'jquery-1.11.1.min.js' %>
-    <%= javascript_include_tag 'chart.min.js' %>
-    <%= javascript_include_tag 'chart-data.js' %>
- 	<%= javascript_include_tag 'easypiechart.js' %>
-	<%= javascript_include_tag 'easypiechart-data.js' %>
-	<%= javascript_include_tag 'lumino.glyphs.js' %>
-
-
-
+	</div>	<!--/.main-->	
 	<script>
+		window.onload = function () {
+	var chart1 = document.getElementById("line-chart").getContext("2d");
+	window.myLine = new Chart(chart1).Line(lineChartData, {
+	responsive: true,
+	scaleLineColor: "rgba(0,0,0,.2)",
+	scaleGridLineColor: "rgba(0,0,0,.05)",
+	scaleFontColor: "#c5c7cc"
+	});
+};
+
 
 	</script>
-		
-</bodyda</html>
+</body>
+</html>
