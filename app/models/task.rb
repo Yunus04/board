@@ -6,5 +6,11 @@ class Task < ApplicationRecord
 	belongs_to :project
 
 
+	# def code(tas)
+	# 	kode = tas.code.chars.last
+	# 	kode = kode+1
+	# 	self.code = kode
+
+	# end
 
 end

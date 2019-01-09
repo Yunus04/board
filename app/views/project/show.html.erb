@@ -1,13 +1,11 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
 	<%= render 'layouts/navbar' %></br>
     <%= render 'layouts/sidebar1' %></br>
-	
+
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -24,22 +22,23 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Tasks</li>
+				<li class="active">Projects  / <%=@project.name %> </li>
 			</ol>
 		</div><!--/.row-->
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Your Tasks
+						<%= @project.name %>
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-								<em class="fa fa-plus"></em>
+								<em class="fa fa-cog"></em>
 							</a>
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li>
 										<ul class="dropdown-settings">
-										<li><%= link_to ' New Task', new_project_task_path %></li>
+										<li><%= link_to ' Setting Project', edit_project_path(@project) %></li>
+										 <li><%= link_to 'Delete Project', project_path(@project), method: :delete, data: {confirm: 'Apakah yakin ingin menghapus data ini ?'} %></li>
 										</ul>
 									</li>
 								</ul>
@@ -49,30 +48,16 @@
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
-							<table class="table table-condensed">
-							  <tr>
-							    <th></th>
-							    <th>Tasks Name</th>
-							    <th>Project</th>
-							    <th>Start Date</th>
-							    <th>End Date</th>
-							  </tr>
-							  
-						<% @task.each do |t| %>	
-							  <tr>
-							    <td><%= t.code %></td>
-							    <td><%= link_to t.name.capitalize, project_task_path(@project.id, t) %></td>
-							    <td><%= t.project.name %></td>
-							    <td><%= t.start_date%></td>
-							    <td><%= t.end_date %></td>	
-							  </tr>
-						<% end %>					  
-							</table>
+							Owner : <%= @project.user.name %> </br>
+							Created : <%= @project.created.strftime('%d-%m-%Y') %></br>
+							Status : <%= @project.status.capitalize %> </br>
+							Description : <%= @project.description %>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->
 	</div>	<!--/.main-->
+
 </body>
 </html>

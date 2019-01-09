@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= render 'layouts/navbar' %></br>
+    <%= render 'layouts/sidebar1' %></br>
+
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+</head>
+<body>
+	
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">New Milestones</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">New Milestones</h1>
+				<div class="panel panel-default">
+						<div class="panel-heading clearfix">Please Input The Data</div>
+						<div class="panel-body">
+							
+							<%= form_for @milestones, url: project_milestone_index_path, method: :post do |m| %>
+						
+								<div class="form-group">
+									<%= m.label :Milestone_Name %>
+									<%= m.text_field :name, class: 'form-control', required: "" %>
+								</div>
+								<div class="form-group">
+									<%= m.label :Description_Milestone %>
+									<%= m.text_area :description, class: 'form-control', required: "" %>
+								</div>
+								
+								<div class="form-group">
+									<%= m.label :Project %>
+								<%= m.text_field :project_id, value: @project.id, class: 'form-control', readonly: "" %>
+								</div>
+								
+								<div class="form-group">
+									<%= m.label :For_Team %>
+									<div>
+									<%= m.select("team_id", options_from_collection_for_select(Team.all, "id", "name", params[:team_id].to_i)) %>
+								</div>
+								 (Optional)
+								<div class="form-group">
+									<%= m.label :Start_Date %>
+									<%= m.date_field :start_date,  value: Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+								</div>	
+								<div class="form-group">
+									<%= m.label :End_Date %>
+									<%= m.date_field :end_date,  value: Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+								</div>									
+								<div class="form-group">
+									<%= m.submit "Create", class: 'btn btn-primary' %>
+								</div>	
+									
+							<% end %>
+						</div>
+					</div>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			
+		</div>
+	</div>
+			
+</body>
+</html>

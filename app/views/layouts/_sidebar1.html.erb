@@ -15,28 +15,17 @@
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
+		
 		<ul class="nav menu">
-
+		
 			<li><%= link_to ' Dashboard', dashboard_index_path, class: "fa fa-home" %></li>
 			<li><%= link_to ' Projects', project_index_path, class: "fa fa-briefcase" %></li>
-			<li><%= link_to ' My Teams', team_index_path, class: "fa fa-users" %></li>
-
-			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-				<em class="fa fa-cogs">&nbsp;</em> Setup <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-				</a>
-				<ul class="children collapse" id="sub-item-1">
-					<li><a class="" href="#">
-						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
-					</a></li>
-					<li><a class="" href="#">
-						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
-					</a></li>
-					<li><a class="" href="#">
-						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
-					</a></li>
-				</ul>
-			</li>
+			<li><%= link_to ' Task', project_task_index_path(@project), class: "fa fa-tasks" %></li>
+			<li><%= link_to ' Milestone', project_milestone_index_path(@project), class: "fa fa-text-width" %></li>
+			<li><%= link_to ' Item-List', project_item_index_path(@project), class: "fa fa-list-alt" %></li>
+			<li><%= link_to ' Issue', project_issue_index_path(@project), class: "fa fa-toggle-off" %></li>
 			<li><%= link_to ' Logout', destroy_user_session_path, class: "fa fa-power-off", method: :delete %></li>
 		</ul>
+		
 	</div><!--/.sidebar-->
 	

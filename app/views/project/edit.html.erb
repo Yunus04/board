@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%= render 'layouts/navbar' %></br>
-    <%= render 'layouts/sidebar' %></br>
+    <%= render 'layouts/sidebar1' %></br>
 
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -22,48 +22,34 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Projects</li>
+				<li class="active">Projects  / <%=@project.name %> / Setting </li>
 			</ol>
 		</div><!--/.row-->
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Your Projects
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-								<em class="fa fa-plus"></em>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-										<li><%= link_to ' New Project', new_project_path %></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-		
+						Info The Project		
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
-							<table class="table table-condensed">
-							  <tr>
-							    <th>Project Name</th>
-							    <th>Status</th>
-							    <th>Description</th>
-							    <th>Created</th>
-							  </tr>
-							  
-						<% @project.each do |p| %>	
-							  <tr>
-							    <td><%= link_to p.name, project_path(p) %></td>
-							    <td><%= p.status.capitalize %></td>
-							    <td><%= truncate p.description.capitalize, length: 50 %></td>
-							    <td><%= p.created.strftime('%d-%m-%Y') %></td>	
-							  </tr>
-						<% end %>					  
-							</table>
+							<%= form_for @project do |p| %>
+								<div class="form-group">
+									<%= p.label :Name_Project %>
+									<%= p.text_field :name, class: 'form-control' %>
+								</div>
+								<div class="form-group">
+									<%= p.label :Description %>
+									<%= p.text_area :description, class: 'form-control' %>
+								</div>
+								<div class="form-group">
+									<%= p.label :Status %>
+									<%= p.select(:status, [['Actived', 'actived'], ['Requirement Or Worked', 'requirement_or_worked']]) %>
+								</div>
+								<div class="form-group">
+									<%= p.submit class: 'btn btn-primary' %> 
+								</div>							
+							<%end%>
 						</div>
 					</div>
 				</div>

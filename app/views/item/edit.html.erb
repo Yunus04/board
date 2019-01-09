@@ -1,0 +1,79 @@
+    <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= render 'layouts/navbar' %></br>
+    <%= render 'layouts/sidebar1' %></br>
+
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Task  / <%=@item.task.name %> / Setting </li>
+			</ol>
+		</div><!--/.row-->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Info The Task		
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<%= form_for @item, url: project_item_path, method: :patch do |i| %>
+
+								<div class="form-group">
+									<%= i.label :Task %>
+									<%= i.text_field :task_id, class: 'form-control' %>
+								</div>
+
+								<div class="form-group">
+									<%= i.label :Milestone %>
+									<%= i.text_field :milestone_id, class: 'form-control' %>
+								</div>
+								<div class="form-group">
+									<%= i.label :List %>
+
+									<%# if @item.list == 'requirement' %>
+									<%#= i.select(:list, [['Requirement', 'requirement'], ['Analysis Or Design', 'analysis_or_design']]) %>
+
+									<%# elsif @item.list == 'analysis_or_design' %>
+										<%#= i.select(:list, [['Requirement', 'requirement'],['Analysis Or Design', 'analysis_or_design'], ['Requirement Or Worked', 'requirement_or_worked']]) %>
+
+									<%# elsif @item.list == 'requirement_or_worked' %>
+										<%#= i.select(:list, [['Analysis Or Design', 'analysis_or_design'],['Requirement Or Worked', 'requirement_or_worked'],['Inp', 'inp'],]) %>
+
+									<%# elsif @item.list == 'inp' %>
+									<%#= i.select(:list, [['Requirement Or Worked', 'requirement_or_worked'],['Inp', 'inp'],['Testing Or Deploy', 'testing_or_deploy']]) %>	
+
+									<%# elsif @item.list == 'testing_or_deploy' %>
+										<%#= i.select(:list, [['Testing Or Deploy', 'testing_or_deploy'],['Testing Or Deploy', 'testing_or_deploy'],['Completed', 'completed']]) %>									
+									<%# end %>
+								</div>								
+								<div class="form-group">
+									<%= i.submit class: 'btn btn-primary' %> 
+								</div>							
+							<%end%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	  
+
+</body>
+</html>

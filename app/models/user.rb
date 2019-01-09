@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :positions
+         has_many :projects
          has_many :teams, through: :positions
          has_many :member_employments
-         has_many :employments, :as => :employmentable
+         has_many :employments, :as => :employable
 
  
 end

@@ -1,0 +1,102 @@
+    <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= render 'layouts/navbar' %></br>
+    <%= render 'layouts/sidebar1' %></br>
+
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Task  / <%=@task.name %> </li>
+			</ol>
+		</div><!--/.row-->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<%= @task.name %>
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cog"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+										<li><%= link_to ' Edit Task', edit_project_task_path(@project.id,@task.id) %></li>
+										 <li><%= link_to 'Delete Task', project_task_path(@project.id,@task.id), method: :delete, data: {confirm: 'Apakah yakin ingin menghapus data ini ?'} %></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+		
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							Code : <%= @task.code %> </br>
+							Name : <%= @task.name %></br>
+							Start Date : <%= @task.start_date %> </br>
+							End Date : <%= @task.end_date %> </br>
+							Project : <%= @task.project.name %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Comment For The Task
+						
+		
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+
+						<div class="canvas-wrapper">
+
+							<div class="row">
+                                <div class="col-md-6 padding-md">
+                                    <div class="ibox">
+                                    	<% @comments.each do |c| %>
+                                        <div class="ibox-title">
+                                           <%= c.comment %>
+                                           
+                                        </div>
+                                         <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                            <%= form_for @comment,url: project_comment_index_path, method: :post do |c| %>
+                                        <div class="ibox-content">
+                                           <%= c.cktext_area :comment, class: 'form-control' %>
+                                           <%= c.hidden_field :commentable_type , value: 'Task' %>
+                                           <%= c.hidden_field :commentable_id , value: @task.id %>
+                                         
+                                        </div>
+                                          <%= c.submit class: 'btn btn-primary' %>
+                                        <% end %> 
+                               
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->	
+</body>
+</html>
