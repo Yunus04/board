@@ -14,22 +14,23 @@
 	
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#">
-					<em class="fa fa-home"></em>
-				</a></li>
-				<li class="active">New Milestones</li>
-			</ol>
-		</div><!--/.row-->
+
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">New Milestones</h1>
+
 				<div class="panel panel-default">
 						<div class="panel-heading clearfix">Please Input The Data</div>
 						<div class="panel-body">
-							
+							<% if @item.errors.any? %>
+				  				<div class='alert alert-danger alert-dismissibele'>
+				  					 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  					 
+				  					<% @item.errors.full_messages.each do |error| %>
+				  					<span><%= error %></span></br>
+				  					<% end %>
+				  				</div>
+				  			<% end %>
 							<%= form_for @item, url: project_item_index_path, method: :post do |m| %>
 						
 								<div class="form-group">
@@ -39,13 +40,16 @@
 								<div class="form-group">
 									<%= m.label :Task %>
 									<div>
-									<%= m.select("task_id", options_from_collection_for_select(Task.all, "id", "name", params[:task_id].to_i)) %>
+									<%= m.select :task_id, @task.map { |t| [t.name, t.id, { class: t.id }] }, include_blank: 'Choose a Task', class: 'form-control' %>
 								</div>
 								<div class="form-group">
 									<%= m.label :Milestone %>
 									<div>
-									<%= m.select("milestone_id", options_from_collection_for_select(Milestone.all, "id", "name", params[:milestone_id].to_i)) %>
-								</div>									
+									
+									<%= m.select :milestone_id, @milestones.map { |m| [m.name, m.id, { class: m.id }] }, include_blank: 'Choose a Milestone', class: 'form-control' %>
+									
+								</div>	
+																
 								<div class="form-group">
 									<%= m.submit "Create", class: 'btn btn-primary' %>
 								</div>	

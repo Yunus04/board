@@ -29,15 +29,23 @@
 				<div class="panel panel-default">
 						<div class="panel-heading clearfix">Please Input The Data</div>
 						<div class="panel-body">
-							
+							<% if @task.errors.any? %>
+				  				<div class='alert alert-danger alert-dismissibele'>
+				  					 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  					 
+				  					<% @task.errors.full_messages.each do |error| %>
+				  					<span><%= error %></span></br>
+				  					<% end %>
+				  				</div>
+				  			<% end %>
 							<%= form_for @task, url: project_task_index_path, method: :post do |t| %>
 						
 								<div class="form-group">
-									<%= t.text_field :code, class: 'form-control', readonly: '' %>
+									<%= t.hidden_field :code, value: @code,  class: 'form-control', readonly: '' %>
 								</div>	
 								<div class="form-group">
 									<%= t.label :Name%>
-									<%= t.text_field :name, class: 'form-control' %>
+									<%= t.text_field :name, class: 'form-control', required: '' %>
 								</div>
 								(Optional)
 								<div class="form-group">

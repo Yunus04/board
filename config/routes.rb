@@ -24,9 +24,10 @@ Rails.application.routes.draw do
       resources :issue
       resources :milestone
       resources :item
+      resources :document, only: [:create]
     resources :comment, only: [:create]
     end   
-    resources :team, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :team
     
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

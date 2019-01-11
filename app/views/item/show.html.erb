@@ -34,7 +34,8 @@
                                          <% @requirement.each do |r| %>
                                         <div class="ibox-content">
                                             <%= link_to r.task.name, project_task_path(@project) %></br>
-                                            <%= link_to 'Forward', move_analys_path(@project, r)  %>
+                                            <%= link_to 'Forward', move_analys_path(@project, r), class: 'btn btn-primary'  %> </br>
+                                            <%= link_to 'Delete', project_item_path(@project, r), method: :delete, data: {confirm: 'Apakah yakin ingin menghapus data ini ?'}, class: 'btn btn-warning' %>
                                         </div>
                                         <% end %>
                                     </div>
@@ -49,6 +50,7 @@
                                         <div class="ibox-content">
                                             <%= link_to a.task.name, project_task_path(@project) %> </br>
                                             <%= link_to 'Back', back_requirement_path(@project, a)  %>|<%= link_to 'Forward', worked_move_path(@project, a)  %>
+                                              <%= link_to 'Delete', project_item_path(@project, a), method: :delete, data: {confirm: 'Apakah yakin ingin menghapus data ini ?'}, class: 'btn btn-warning' %>
                                         </div>
                                         <%end %>
                                     </div>
@@ -63,6 +65,7 @@
                                         <div class="ibox-content">
                                             <%= link_to w.task.name, project_task_path(@project) %></br>
                                             <%= link_to 'Back', back_analysis_path(@project, w)  %>|<%= link_to 'Forward', inp_move_path(@project, w)  %>
+                                             <%= link_to 'Delete', project_item_path(@project, w), method: :delete, data: {confirm: 'Apakah yakin ingin menghapus data ini ?'}, class: 'btn btn-warning' %>
                                         </div>
                                         <% end %>
                                     </div>
@@ -77,6 +80,7 @@
                                         <div class="ibox-content">
                                             <%= link_to  i.task.name, project_task_path(@project) %></br>
                                             <%= link_to 'Back',  worked_back_path(@project, i)  %>|<%= link_to 'Forward', deploy_move_path(@project, i)  %>
+                                             <%= link_to 'Delete', project_item_path(@project, i), method: :delete, data: {confirm: 'Apakah yakin ingin menghapus data ini ?'}, class: 'btn btn-warning' %>
                                         </div>
                                         <% end %>
                                     </div>
@@ -92,6 +96,7 @@
                                         <div class="ibox-content">
                                             <%= link_to t.task.name, project_task_path(@project) %></br>
                                             <%= link_to 'Back',  inp_back_path(@project, t)  %>|<%= link_to 'Forward', completed_move_path(@project, t)  %>
+                                             <%= link_to 'Delete', project_item_path(@project, t), method: :delete, data: {confirm: 'Apakah yakin ingin menghapus data ini ?'}, class: 'btn btn-warning' %>
                                         </div>
                                         <% end %>
                                     </div>

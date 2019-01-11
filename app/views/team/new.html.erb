@@ -19,7 +19,7 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">New Projects</li>
+				<li class="active">New Team</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -29,32 +29,25 @@
 				<div class="panel panel-default">
 						<div class="panel-heading clearfix">Please Input The Data</div>
 						<div class="panel-body">
-
-				  			<% if @project.errors.any? %>
-				  				<div class='alert alert-danger alert-dismissibele'>
-				  					 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				  					 
-				  					<% @project.errors.full_messages.each do |error| %>
-				  					<span><%= error %></span></br>
-				  					<% end %>
-				  				</div>
-				  			<% end %>
-				  										
-							<%= form_for @project, url: project_index_path, method: :post do |p| %>
+							
+							<%= form_for @team, url: team_index_path, method: :post do |t| %>
 						
 								<div class="form-group">
-									<%= p.label :Project_Name %>
-									<%= p.text_field :name, class: 'form-control', required: "" %>
+									<%= t.label :Team_Name %>
+									<%= t.text_field :name, class: 'form-control', required: "" %>
 								</div>
 								<div class="form-group">
-									<%= p.label :Description_Project %>
-									<%= p.text_area :description, class: 'form-control', required: "" %>
+									<%= t.hidden_field :created, value: Time.now.strftime('%Y-%m-%d'), class: 'form-control', required: "" %>
+								</div>
+								<div>
+
+									<%= t.fields_for :positions do |p| %>
+									<%=  p.hidden_field :user_id, value: current_user.id %>
+									<%= p.hidden_field :level, value: 'contractor'  %>
+									<% end %>
 								</div>
 								<div class="form-group">
-									<%= p.hidden_field :created,  value: Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
-								</div>	
-								<div class="form-group">
-									<%= p.submit "Create", class: 'btn btn-primary' %>
+									<%= t.submit "Create", class: 'btn btn-primary' %>
 								</div>	
 									
 							<% end %>

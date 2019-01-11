@@ -6,11 +6,16 @@ class Task < ApplicationRecord
 	belongs_to :project
 
 
-	# def code(tas)
-	# 	kode = tas.code.chars.last
-	# 	kode = kode+1
-	# 	self.code = kode
 
-	# end
+
+	 def sandi(last)
+	 	if last.nil?
+	 		self.code = "T-1"
+	 	else
+		 		kode = last.code[2..3]
+		 		kode = kode.to_i + 1
+		 		self.code = "T-" + kode.to_s
+	 	end
+	 end
 
 end

@@ -49,7 +49,7 @@
 					<div class="panel-body">
 						<div class="canvas-wrapper">				
                             Project : <%= @milestones.project.name %> </br> 
-                            Team : <%= @milestones.team.name.capitalize %> </br>
+                            Team : <%= @milestones.team.blank? ? 'Belum Ada Team' : @milestones.team.name.capitalize %> </br>
                             Start Date : <%= @milestones.start_date %> </br>
                             End Date : <%= @milestones.end_date %> </br>                        
                 			Description The Milestone : <%= @milestones.description %>

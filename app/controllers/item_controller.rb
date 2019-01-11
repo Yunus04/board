@@ -1,5 +1,7 @@
 class ItemController < ApplicationController
 
+	before_action :get_item_data, only: [:analis_move, :back_requirement, :worked_move, :back_analysis, :inp_move, :worked_back, :deploy_move, :inp_back, :completed_move, :destroy]
+
 	def index
 		@project = Project.find(params[:project_id])
 		@milestones = @project.milestones
@@ -20,6 +22,8 @@ class ItemController < ApplicationController
 
  	def new
  		@project = Project.find(params[:project_id])
+ 		@milestones = Milestone.where(project_id: @project.id)
+ 		@task = Task.where(project_id: @project.id)
  		@item = Item.new
  	end
 
@@ -53,135 +57,131 @@ class ItemController < ApplicationController
  	end
 
  	def analis_move
- 		@project = Project.find(params[:project_id])
-
- 		@item = Item.find(params[:id])
 
  		@item.move_to_analysis_or_design
 
  			if @item.save
- 				redirect_to project_item_path(@project)
+ 				redirect_to project_item_path(@project, @milestone)
  			else
  					
- 				redirect_to project_item_path(@project) 
+ 				redirect_to project_item_path(@project, @milestone) 
 
  		end
  	end
 
  	def back_requirement
- 		@project = Project.find(params[:id])
+ 		#debugger
+ 		@project = Project.find(params[:project_id])
  		
  		@item = Item.find(params[:id])
  		@item.back_to_requirement
-
+ 		@milestone = @item.milestone
  			if @item.save
- 				redirect_to project_item_path(@project)
+ 				redirect_to project_item_path(@project, @milestone)
  			else
  					
- 				redirect_to project_item_path(@project) 
+ 				redirect_to project_item_path(@project, @milestone) 
 
  		end
  	end
 
  	def worked_move
- 		@project = Project.find(params[:id])
  		
- 		@item = Item.find(params[:id])
- 		@item.move_to_requirement_or_worked
 
+ 		@item.move_to_requirement_or_worked
+ 		
  		if @item.save
- 			redirect_to project_item_path(@project)
+ 			redirect_to project_item_path(@project, @milestone)
  		else
  				
- 			redirect_to project_item_path(@project) 	
+ 			redirect_to project_item_path(@project, @milestone) 	
  		end	
  	end
 
  	def back_analysis
- 		@project = Project.find(params[:id])
  		
- 		@item = Item.find(params[:id])
  		@item.back_to_analysis_or_design
-
  		if @item.save
- 			redirect_to project_item_path(@project)
+ 			redirect_to project_item_path(@project, @milestone)
  		else
  				
- 			redirect_to project_item_path(@project)
- 		end
+ 			redirect_to project_item_path(@project, @milestone) 	
+ 		end	
  	end 
 
  	def inp_move
- 		@project = Project.find(params[:id])
- 		
- 		@item = Item.find(params[:id])
+
  		@item.move_to_inp
 
  		if @item.save
- 			redirect_to project_item_path(@project)
+ 			redirect_to project_item_path(@project, @milestone)
  		else
  				
- 			redirect_to project_item_path(@project)
- 		end
+ 			redirect_to project_item_path(@project, @milestone) 	
+ 		end	
  	end 
 
  	def worked_back
- 		@project = Project.find(params[:id])
- 		
- 		@item = Item.find(params[:id])
+
  		@item.back_to_requirement_or_worked
 
  		if @item.save
- 			redirect_to project_item_path(@project)
+ 			redirect_to project_item_path(@project, @milestone)
  		else
  				
- 			redirect_to project_item_path(@project)
- 		end
+ 			redirect_to project_item_path(@project, @milestone) 	
+ 		end	
  	end 
 
  	def deploy_move
- 		@project = Project.find(params[:project_id])
- 		
- 		@item = Item.find(params[:id])
+
  		@item.move_to_testing_or_deploy
 
  		if @item.save
- 			redirect_to project_item_path(@project)
+ 			redirect_to project_item_path(@project, @milestone)
  		else
  				
- 			redirect_to project_item_path(@project)
- 		end
+ 			redirect_to project_item_path(@project, @milestone) 	
+ 		end	
 
 
  	end 
 
  	def inp_back
- 		@project = Project.find(params[:id])
- 		
- 		@item = Item.find(params[:id])
+
  		@item.back_to_inp
 
  		if @item.save
- 			redirect_to project_item_path(@project)
+ 			redirect_to project_item_path(@project, @milestone)
  		else
  				
- 			redirect_to project_item_path(@project)
- 		end
+ 			redirect_to project_item_path(@project, @milestone) 	
+ 		end	
  	end  
 
  	def completed_move
- 		@project = Project.find(params[:id])
- 		
- 		@item = Item.find(params[:id])
- 		@item.back_to_inp
+
+ 		@item.move_to_completed
 
  		if @item.save
- 			redirect_to project_item_path(@project)
+ 			redirect_to project_item_path(@project, @milestone)
  		else
  				
- 			redirect_to project_item_path(@project)
- 		end 			
+ 			redirect_to project_item_path(@project, @milestone) 	
+ 		end				
  	end   		  	  	 		
+
+ 	def get_item_data
+ 		@project = Project.find(params[:project_id])
+ 		@item = Item.find(params[:id])
+ 		@milestone = @item.milestone
+ 	end
+
+ 	def destroy
+ 		@item = Item.find(params[:id])
+		@item.destroy
+		redirect_to project_item_path(@project, @milestone), notice: 'Project berhasil di hapus' 	
+ 	end
 
 	private
 

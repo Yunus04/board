@@ -42,14 +42,18 @@
 								</div>
 								
 								<div class="form-group">
-									<%= m.label :Project %>
-								<%= m.text_field :project_id, value: @project.id, class: 'form-control', readonly: "" %>
+									
+								<%= m.hidden_field :project_id, value: @project.id, class: 'form-control', readonly: "" %>
 								</div>
 								
 								<div class="form-group">
 									<%= m.label :For_Team %>
 									<div>
-									<%= m.select("team_id", options_from_collection_for_select(Team.all, "id", "name", params[:team_id].to_i)) %>
+										<% if @milestone_team.blank? %>
+										<%= 'Belum Memiliki Team' %>
+										<% else %>
+											<%= m.text_field :team_id, value: @milestone_team.team_id, class: 'form-control', required: "" %>
+										<% end %>
 								</div>
 								 (Optional)
 								<div class="form-group">

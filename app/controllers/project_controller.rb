@@ -3,13 +3,15 @@ class ProjectController < ApplicationController
 	before_action :authenticate_user!, only: [:index]
 	
  	def index
- 		@project = Project.all
+ 		@project = Project.where(user_id: current_user)
  	
  	end
 
  	def show
  		@project = Project.find(params[:id])
- 		@milestones = Milestone.find(params[:id])
+ 		@issue = Issue.where(project_id: @project.id)
+ 		@doc = Document.all
+		@document = Document.new 
  				
  	end
 
@@ -32,12 +34,11 @@ class ProjectController < ApplicationController
  	end
  	
  	def edit
- 		@milestones = Milestone.find(params[:id])
  		@project = Project.find(params[:id])
  	end
 
  	def update
- 		@milestones = Milestone.find(params[:id])
+
 		@project = Project.find(params[:id])
 		
 		if @project.update(resource_params)

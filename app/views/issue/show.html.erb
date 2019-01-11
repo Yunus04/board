@@ -62,7 +62,7 @@
                                     <div class="ibox">
                                     	<% @comments.each do |c| %>
                                         <div class="ibox-title">
-                                           <%= c.comment %>
+                                           <%= raw c.comment %>
                                            
                                         </div>
                                          <% end %>
@@ -71,10 +71,9 @@
                             </div>
                             <%= form_for @comment,url: project_comment_index_path(@project), method: :post do |c| %>
                                         <div class="ibox-content">
-                                           <%= c.cktext_area :comment, class: 'form-control' %>
+                                           <%= c.cktext_area :comment, class: 'form-control', required: '' %>
                                            <%= c.hidden_field :commentable_type , value: 'Issue' %>
-                                           <%= c.hidden_field :commentable_id , value: @issue.id %>
-                                         
+                                           <%= c.hidden_field :commentable_id , value: @issue.id %>  
                                         </div>
                                           <%= c.submit class: 'btn btn-primary' %>
                                         <% end %> 

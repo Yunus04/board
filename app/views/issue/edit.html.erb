@@ -36,21 +36,12 @@
 							<%= form_for @issue, url: project_issue_path, method: :patch do |i| %>
 
 								<div class="form-group">
-									<%= i.label :Code %>
-									<%= i.text_field :code, class: 'form-control' %>
-								</div>
-
-								<div class="form-group">
 									<%= i.label :Name_issue %>
-									<%= i.text_field :title, class: 'form-control' %>
+									<%= i.text_field :title, class: 'form-control', required: '' %>
 								</div>
 								<div class="form-group">
 									<%= i.label :Description %>
-									<%= i.text_field :description, class: 'form-control' %>
-								</div>
-								<div class="form-group">
-									<%= i.label :Created %>
-									<%= i.date_field :created, class: 'form-control' %>
+									<%= i.text_field :description, class: 'form-control', required: '' %>
 								</div>
 								<div class="form-group">
 									<%= i.label :Status %>

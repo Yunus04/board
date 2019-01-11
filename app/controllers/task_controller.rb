@@ -8,13 +8,17 @@ class TaskController < ApplicationController
 	def show
 		@project = Project.find(params[:project_id])
 		@task = Task.find(params[:id])
-		@comments = Comment.where(commentable_type: 'Task')
+		@comments = @task.comments.where(commentable_type: 'Task')
 		@comment = Comment.new 
 	end
 
 	def new
 		@project = Project.find(params[:project_id])
 		@task = Task.new
+		@last = Task.where(project_id: @project.id)
+		@t = @last.last
+		@code = @task.sandi(@t)
+
 	end
 
 	def create
@@ -27,7 +31,6 @@ class TaskController < ApplicationController
 	end
 
 	def edit
-		@milestones = Milestone.find(params[:id])
 		@project = Project.find(params[:project_id])
 		@task = Task.find(params[:id])
 	end

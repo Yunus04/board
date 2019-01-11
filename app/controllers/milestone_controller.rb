@@ -10,8 +10,9 @@ class MilestoneController < ApplicationController
  		@milestones = Milestone.find(params[:id])
  	end
 
- 	def new
- 		@project = Project.find(params[:project_id])
+ 	def new 
+ 		@project = Project.find(params[:project_id]) 
+ 		@milestone_team = Milestone.where(project_id: @project_id).last
  		@milestones = Milestone.new
 
  	end

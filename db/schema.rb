@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_01_09_143453) do
   create_table "positions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "team_id"
-    t.integer "position"
+    t.string "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

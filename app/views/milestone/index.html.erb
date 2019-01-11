@@ -67,7 +67,7 @@
 							    <td><%= link_to m.name, project_milestone_path(@project.id, m) %></td>
 							    <td><%= truncate m.description, length: 30 %></td>
 							    <td><%= m.project.name %></td>
-							    <td><%= m.team.name%></td>
+							    <td><%= m.team.blank? ?  'Belum Ada Team' : name%></td>
 							    <td><%= m.start_date %></td>
 							    <td><%= m.end_date %></td>
 							  </tr>

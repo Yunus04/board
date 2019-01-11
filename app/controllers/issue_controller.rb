@@ -8,13 +8,16 @@ class IssueController < ApplicationController
 	 def show
 	 	@project = Project.find(params[:project_id])
 	 	@issue = Issue.find(params[:id])
-	 	@comments = Comment.where(commentable_type: 'Issue')
+	 	@comments = @issue.comments.where(commentable_type: 'Issue')
 		@comment = Comment.new 
 	 end
 
 	 def new
 	 	@project = Project.find(params[:project_id])
 	 	@issue = Issue.new
+		@last = Issue.where(project_id: @project.id)
+		@t = @last.last
+		@code = @issue.sandi(@t)
 	 end
 
 	 def create
